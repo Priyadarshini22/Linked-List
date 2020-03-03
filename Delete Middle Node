@@ -1,0 +1,47 @@
+class Node:  
+    def __init__(self,data):  
+        self.data = data;  
+        self.next = None;  
+          
+class Deletion:    
+    def __init__(self):  
+        self.head = None   
+    def addNode(self, data):    
+         new=Node(data)
+         if self.head is None:
+              self.head=new 
+              return
+         temp=self.head 
+         while temp.next:
+             temp=temp.next 
+         temp.next=new 
+         
+    def middle(self):
+      first=temp=self.head
+      i=0
+      while temp:
+           i+=1 
+           temp=temp.next 
+      i=i//2+1
+      c=1 
+      cur=None
+      while first.next:
+           if c==i:  
+             cur.next=first.next
+           cur=first 
+           first=first.next
+           c+=1
+    def print(self):
+         temp=self.head
+         l1=[]
+         while temp:
+             l1.append(temp.data)
+             temp=temp.next
+         print(*l1)
+sList = Deletion()
+no_nodes=int(input())
+l=[int(x) for x in input().split()]
+for i in l:
+  sList.addNode(i)    
+sList.middle()
+sList.print()
