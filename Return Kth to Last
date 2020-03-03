@@ -1,0 +1,49 @@
+class Node:  
+    def __init__(self,data):  
+        self.data = data;  
+        self.next = None;  
+          
+class Deletion:    
+    def __init__(self):  
+        self.head = None   
+    def addNode(self, data):    
+         new=Node(data)
+         new.next=self.head
+         self.head=new
+    def deletion(self,key):
+      temp=self.head
+      cur=None
+      i=1
+      while temp:
+        if i==key:
+            cur.next=temp.next
+        cur=temp
+        temp=temp.next
+        i+=1
+      return cur
+    def reverse(self):
+        cur=self.head
+        prev=None 
+        next=None 
+        while cur:
+          next=cur.next 
+          cur.next=prev 
+          prev=cur 
+          cur=next 
+        self.head=prev
+    def print(self):
+         temp=self.head
+         l1=[]
+         while temp:
+             l1.append(temp.data)
+             temp=temp.next
+         print(*l1)
+sList = Deletion()
+no_nodes=int(input())
+l=[int(x) for x in input().split()]
+key=int(input())
+for i in l:
+  sList.addNode(i)    
+sList.deletion(key)
+sList.reverse()
+sList.print()
