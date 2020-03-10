@@ -7,22 +7,17 @@ class Circular:
       self.head=None 
    def push(self,data):
        new=Node(data) 
-       temp=self.head 
-       new.next=self.head 
-       if self.head is not None:
-          while temp.next !=self.head:
-           temp=temp.next 
-          temp.next=new 
-       else:
-           new.next=new 
+       new.next=self.head
        self.head=new  
+   def addLoop(self): 
+       self.head.next.next.next=self.head
    def detect(self):
-       fast=self.head 
-       slow=self.head 
-       while fast.next and slow.next : 
+       fast=self.head.next.next
+       slow=self.head.next
+       while fast and fast.next : 
           if fast!=slow:
            fast=fast.next.next 
-           slow=next 
+           slow=slow.next
           else:
             return True
        return False 
@@ -34,8 +29,9 @@ class Circular:
 c=Circular()
 l=[int(x) for x in input().split()]
 for i in l:
-  c.push(i)  
+  c.push(i)   
+c.addLoop();
 if c.detect():
     print("detect")
 else:
-    print("No loops") 
+    print("No loops")
